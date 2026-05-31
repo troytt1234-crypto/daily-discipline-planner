@@ -1,0 +1,725 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Daily Discipline Planner — Build Your System. Own Your Day.</title>
+  <meta name="description" content="A Notion productivity template for students and young men who want to stop drifting and start building real discipline. £17." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet" />
+  <style>
+    /* ── RESET & BASE ── */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --bg:        #0d0d0d;
+      --bg-card:   #141414;
+      --bg-raised: #1a1a1a;
+      --border:    #2a2a2a;
+      --gold:      #c9a84c;
+      --gold-dim:  #a8893c;
+      --gold-glow: rgba(201,168,76,0.15);
+      --text:      #f0ede8;
+      --text-muted:#888;
+      --text-dim:  #555;
+      --radius:    10px;
+    }
+    html { scroll-behavior: smooth; }
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: 'Inter', system-ui, sans-serif;
+      font-size: 16px;
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+    }
+    a { color: inherit; text-decoration: none; }
+    img { max-width: 100%; display: block; }
+
+    /* ── LAYOUT HELPERS ── */
+    .container {
+      width: 100%;
+      max-width: 860px;
+      margin: 0 auto;
+      padding: 0 24px;
+    }
+    .section { padding: 80px 0; }
+    .section--tight { padding: 56px 0; }
+
+    /* ── NAV ── */
+    nav {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: rgba(13,13,13,0.92);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border);
+    }
+    .nav-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 56px;
+    }
+    .nav-logo {
+      font-size: 13px;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--gold);
+    }
+    .nav-cta {
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--bg);
+      background: var(--gold);
+      padding: 8px 18px;
+      border-radius: 6px;
+      letter-spacing: 0.04em;
+      transition: background 0.2s;
+    }
+    .nav-cta:hover { background: var(--gold-dim); }
+
+    /* ── HERO ── */
+    .hero {
+      padding: 100px 0 80px;
+      text-align: center;
+    }
+    .hero-eyebrow {
+      display: inline-block;
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--gold);
+      border: 1px solid rgba(201,168,76,0.3);
+      padding: 5px 14px;
+      border-radius: 20px;
+      margin-bottom: 28px;
+    }
+    .hero h1 {
+      font-size: clamp(32px, 6vw, 58px);
+      font-weight: 900;
+      line-height: 1.1;
+      letter-spacing: -0.02em;
+      margin-bottom: 22px;
+    }
+    .hero h1 em {
+      font-style: normal;
+      color: var(--gold);
+    }
+    .hero-sub {
+      font-size: clamp(16px, 2.5vw, 20px);
+      color: var(--text-muted);
+      max-width: 580px;
+      margin: 0 auto 40px;
+      font-weight: 400;
+      line-height: 1.5;
+    }
+    .hero-cta-wrap {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 12px;
+    }
+    .btn-primary {
+      display: inline-block;
+      background: var(--gold);
+      color: #0d0d0d;
+      font-weight: 800;
+      font-size: 16px;
+      letter-spacing: 0.03em;
+      padding: 16px 40px;
+      border-radius: 8px;
+      transition: background 0.2s, transform 0.15s;
+    }
+    .btn-primary:hover { background: var(--gold-dim); transform: translateY(-1px); }
+    .hero-price {
+      font-size: 13px;
+      color: var(--text-dim);
+    }
+    .hero-price strong { color: var(--text-muted); }
+
+    /* ── DIVIDER ── */
+    .divider {
+      height: 1px;
+      background: var(--border);
+    }
+
+    /* ── PAIN SECTION ── */
+    .pain-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 16px;
+      margin-top: 48px;
+    }
+    .pain-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 24px;
+    }
+    .pain-card .icon {
+      font-size: 22px;
+      margin-bottom: 12px;
+    }
+    .pain-card p {
+      font-size: 15px;
+      color: var(--text-muted);
+      line-height: 1.5;
+    }
+
+    /* ── SECTION LABEL ── */
+    .section-label {
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 14px;
+    }
+    .section-heading {
+      font-size: clamp(24px, 4vw, 38px);
+      font-weight: 800;
+      letter-spacing: -0.02em;
+      line-height: 1.2;
+      margin-bottom: 16px;
+    }
+    .section-sub {
+      font-size: 17px;
+      color: var(--text-muted);
+      max-width: 520px;
+      line-height: 1.6;
+    }
+
+    /* ── MOCKUP ── */
+    .mockup-section { text-align: center; }
+    .mockup-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 16px;
+      margin-top: 48px;
+    }
+    /*
+    ══════════════════════════════════════════════════
+    SCREENSHOT PLACEHOLDERS
+    To swap in your own screenshots:
+      1. Save your images as screenshot-1.jpg, screenshot-2.jpg, screenshot-3.jpg
+      2. Place them in the same folder as this index.html file
+      3. Replace each src="screenshot-1.jpg" with your actual filename
+      4. Delete the <div class="mockup-label"> line below each image if you want
+    ══════════════════════════════════════════════════
+    */
+    .mockup-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      overflow: hidden;
+      position: relative;
+    }
+    .mockup-card img {
+      width: 100%;
+      height: 220px;
+      object-fit: cover;
+      display: block;
+    }
+    .mockup-placeholder {
+      width: 100%;
+      height: 220px;
+      background: var(--bg-raised);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      border-bottom: 1px solid var(--border);
+    }
+    .mockup-placeholder span {
+      font-size: 28px;
+      margin-bottom: 8px;
+    }
+    .mockup-placeholder p {
+      font-size: 11px;
+      color: var(--text-dim);
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+    .mockup-label {
+      padding: 14px 16px;
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--text-muted);
+      text-align: left;
+    }
+
+    /* ── WHAT'S INSIDE ── */
+    .features-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 16px;
+      margin-top: 48px;
+    }
+    .feature-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 28px 24px;
+      transition: border-color 0.2s;
+    }
+    .feature-card:hover { border-color: rgba(201,168,76,0.4); }
+    .feature-icon {
+      width: 40px;
+      height: 40px;
+      border-radius: 8px;
+      background: var(--gold-glow);
+      border: 1px solid rgba(201,168,76,0.25);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 18px;
+      margin-bottom: 16px;
+    }
+    .feature-card h3 {
+      font-size: 16px;
+      font-weight: 700;
+      margin-bottom: 8px;
+    }
+    .feature-card p {
+      font-size: 14px;
+      color: var(--text-muted);
+      line-height: 1.55;
+    }
+
+    /* ── WHO IT'S FOR ── */
+    .for-list {
+      margin-top: 36px;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+    .for-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 14px;
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 18px 20px;
+    }
+    .for-item .check {
+      width: 22px;
+      height: 22px;
+      border-radius: 50%;
+      background: var(--gold-glow);
+      border: 1px solid rgba(201,168,76,0.3);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 11px;
+      color: var(--gold);
+      flex-shrink: 0;
+      margin-top: 1px;
+    }
+    .for-item p {
+      font-size: 15px;
+      color: var(--text-muted);
+      line-height: 1.5;
+    }
+    .for-item p strong { color: var(--text); }
+
+    /* ── SOCIAL PROOF ── */
+    .reviews-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 16px;
+      margin-top: 48px;
+    }
+    .review-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 24px;
+    }
+    .review-stars {
+      color: var(--gold);
+      font-size: 14px;
+      letter-spacing: 2px;
+      margin-bottom: 12px;
+    }
+    .review-text {
+      font-size: 15px;
+      color: var(--text-muted);
+      line-height: 1.6;
+      margin-bottom: 18px;
+      font-style: italic;
+    }
+    .review-author {
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--text-dim);
+    }
+    .review-note {
+      text-align: center;
+      margin-top: 20px;
+      font-size: 12px;
+      color: var(--text-dim);
+    }
+
+    /* ── CTA BLOCK ── */
+    .cta-block {
+      background: var(--bg-card);
+      border: 1px solid rgba(201,168,76,0.2);
+      border-radius: 14px;
+      padding: 64px 40px;
+      text-align: center;
+    }
+    .cta-block h2 {
+      font-size: clamp(26px, 4vw, 42px);
+      font-weight: 900;
+      letter-spacing: -0.02em;
+      line-height: 1.15;
+      margin-bottom: 16px;
+    }
+    .cta-block h2 em {
+      font-style: normal;
+      color: var(--gold);
+    }
+    .cta-block p {
+      font-size: 17px;
+      color: var(--text-muted);
+      max-width: 480px;
+      margin: 0 auto 36px;
+    }
+    .cta-price-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      background: var(--gold-glow);
+      border: 1px solid rgba(201,168,76,0.3);
+      border-radius: 8px;
+      padding: 10px 20px;
+      margin-bottom: 28px;
+    }
+    .cta-price-badge .price {
+      font-size: 28px;
+      font-weight: 900;
+      color: var(--gold);
+    }
+    .cta-price-badge .label {
+      font-size: 13px;
+      color: var(--text-muted);
+      text-align: left;
+      line-height: 1.3;
+    }
+    .cta-sub {
+      margin-top: 14px;
+      font-size: 13px;
+      color: var(--text-dim);
+    }
+
+    /* ── FOOTER ── */
+    footer {
+      border-top: 1px solid var(--border);
+      padding: 32px 0;
+      text-align: center;
+    }
+    footer p {
+      font-size: 13px;
+      color: var(--text-dim);
+    }
+
+    /* ── MOBILE ── */
+    @media (max-width: 600px) {
+      .section { padding: 60px 0; }
+      .hero { padding: 72px 0 60px; }
+      .cta-block { padding: 44px 24px; }
+      .pain-grid, .features-grid, .reviews-grid, .mockup-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ── NAV ── -->
+  <nav>
+    <div class="container">
+      <div class="nav-inner">
+        <span class="nav-logo">Daily Discipline</span>
+        <!--
+          ════════════════════════════════════════════
+          GUMROAD LINK — NAV BUTTON
+          Replace YOUR_GUMROAD_LINK_HERE with your actual Gumroad product URL.
+          Example: https://yourname.gumroad.com/l/daily-discipline-planner
+          ════════════════════════════════════════════
+        -->
+        <a href="YOUR_GUMROAD_LINK_HERE" class="nav-cta" target="_blank" rel="noopener">Get the Planner — £17</a>
+      </div>
+    </div>
+  </nav>
+
+  <!-- ── HERO ── -->
+  <section class="hero">
+    <div class="container">
+      <div class="hero-eyebrow">Notion Productivity Template</div>
+      <h1>
+        You're Not Lazy.<br />
+        You Just Don't Have<br />
+        <em>A System.</em>
+      </h1>
+      <p class="hero-sub">
+        The Daily Discipline Planner gives you a simple, clean structure to plan your days, track your habits, manage your money, and actually follow through — without the overwhelm.
+      </p>
+      <div class="hero-cta-wrap">
+        <!--
+          ════════════════════════════════════════════
+          GUMROAD LINK — HERO BUTTON (main CTA)
+          Replace YOUR_GUMROAD_LINK_HERE below with your Gumroad product URL.
+          To find it: log into Gumroad → click your product → click "Share" → copy the link.
+          ════════════════════════════════════════════
+        -->
+        <a href="YOUR_GUMROAD_LINK_HERE" class="btn-primary" target="_blank" rel="noopener">
+          Get Instant Access — £17
+        </a>
+        <p class="hero-price">One-time payment. <strong>Instant Notion template delivery.</strong> No subscription.</p>
+      </div>
+    </div>
+  </section>
+
+  <div class="divider"></div>
+
+  <!-- ── PAIN ── -->
+  <section class="section">
+    <div class="container">
+      <p class="section-label">Sound familiar?</p>
+      <h2 class="section-heading">Most guys your age<br />are drifting. Are you?</h2>
+      <p class="section-sub">Every week looks the same — good intentions, zero follow-through. No plan, no progress, no direction.</p>
+
+      <div class="pain-grid">
+        <div class="pain-card">
+          <div class="icon">⏳</div>
+          <p>You waste hours every day with nothing to show for it by midnight.</p>
+        </div>
+        <div class="pain-card">
+          <div class="icon">🎯</div>
+          <p>You set goals at the start of the week and forget about them by Tuesday.</p>
+        </div>
+        <div class="pain-card">
+          <div class="icon">💸</div>
+          <p>You have no idea where your money is going — it's just gone.</p>
+        </div>
+        <div class="pain-card">
+          <div class="icon">🔁</div>
+          <p>You keep starting over. Same bad habits. No real system to break them.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="divider"></div>
+
+  <!-- ── MOCKUP ── -->
+  <section class="section mockup-section">
+    <div class="container">
+      <p class="section-label">Inside the planner</p>
+      <h2 class="section-heading">Clean. Minimal. Built for focus.</h2>
+      <p class="section-sub" style="margin:0 auto;">Not a bloated system you'll abandon in three days. Every page has one job and does it well.</p>
+
+      <div class="mockup-grid">
+        <!--
+          ════════════════════════════════════════════
+          HOW TO ADD YOUR SCREENSHOTS
+          1. Take a screenshot of each page inside your Notion template
+          2. Save the files as: screenshot-1.jpg, screenshot-2.jpg, screenshot-3.jpg
+          3. Put them in the same folder as this index.html file
+          4. Delete the <div class="mockup-placeholder">...</div> block inside each card
+          5. Uncomment the <img> line below it (remove the <!-- and --> around it)
+          ════════════════════════════════════════════
+        -->
+
+        <!-- CARD 1 -->
+        <div class="mockup-card">
+          <div class="mockup-placeholder">
+            <span>📅</span>
+            <p>Drop screenshot-1.jpg here</p>
+          </div>
+          <!-- <img src="screenshot-1.jpg" alt="Daily Schedule page" /> -->
+          <div class="mockup-label">Daily Schedule</div>
+        </div>
+
+        <!-- CARD 2 -->
+        <div class="mockup-card">
+          <div class="mockup-placeholder">
+            <span>📊</span>
+            <p>Drop screenshot-2.jpg here</p>
+          </div>
+          <!-- <img src="screenshot-2.jpg" alt="Habit Tracker page" /> -->
+          <div class="mockup-label">Habit Tracker</div>
+        </div>
+
+        <!-- CARD 3 -->
+        <div class="mockup-card">
+          <div class="mockup-placeholder">
+            <span>💰</span>
+            <p>Drop screenshot-3.jpg here</p>
+          </div>
+          <!-- <img src="screenshot-3.jpg" alt="Money Tracker page" /> -->
+          <div class="mockup-label">Money Tracker</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="divider"></div>
+
+  <!-- ── FEATURES ── -->
+  <section class="section">
+    <div class="container">
+      <p class="section-label">What's included</p>
+      <h2 class="section-heading">Everything you need.<br />Nothing you don't.</h2>
+
+      <div class="features-grid">
+        <div class="feature-card">
+          <div class="feature-icon">📅</div>
+          <h3>Daily Scheduling</h3>
+          <p>Plan your day hour by hour. Know exactly what you're doing and when. Stop winging it.</p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon">🎯</div>
+          <h3>Weekly Goals</h3>
+          <p>Set 3–5 meaningful targets each week and track them to completion — not just write them and forget.</p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon">🔁</div>
+          <h3>Habit Tracking</h3>
+          <p>Build the habits that compound. Mark them daily. Watch your consistency streak grow.</p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon">💸</div>
+          <h3>Money Tracking</h3>
+          <p>Log your income and spending. No more wondering where it all went at the end of the month.</p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon">🙏</div>
+          <h3>Prayer &amp; Gratitude</h3>
+          <p>Start and end your day grounded. A dedicated space to reflect, pray, and stay grateful.</p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon">📈</div>
+          <h3>Monthly Review</h3>
+          <p>End each month with an honest look at what worked, what didn't, and what you're carrying forward.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="divider"></div>
+
+  <!-- ── WHO IT'S FOR ── -->
+  <section class="section">
+    <div class="container">
+      <p class="section-label">Who this is for</p>
+      <h2 class="section-heading">This is for you if…</h2>
+
+      <div class="for-list">
+        <div class="for-item">
+          <div class="check">✓</div>
+          <p>You're a <strong>student or young man aged 16–25</strong> who feels like life has no structure and you're just reacting to everything.</p>
+        </div>
+        <div class="for-item">
+          <div class="check">✓</div>
+          <p>You've tried apps, journals, and planners before — they were <strong>too complicated, too ugly, or too much effort</strong> to maintain.</p>
+        </div>
+        <div class="for-item">
+          <div class="check">✓</div>
+          <p>You want to <strong>build real discipline</strong> — not motivation that fades after a week, but a repeatable daily system.</p>
+        </div>
+        <div class="for-item">
+          <div class="check">✓</div>
+          <p>You already use Notion or you're open to it — it's free, works on any device, and <strong>this template is ready to go the moment you open it.</strong></p>
+        </div>
+        <div class="for-item">
+          <div class="check">✓</div>
+          <p>You value <strong>clean, minimal design</strong>. You don't want colour explosions and cartoon icons — just a sharp, serious tool that gets out of your way.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="divider"></div>
+
+  <!-- ── SOCIAL PROOF ── -->
+  <section class="section">
+    <div class="container">
+      <p class="section-label">What people are saying</p>
+      <h2 class="section-heading">Real results,<br />real people.</h2>
+
+      <div class="reviews-grid">
+        <!--
+          ════════════════════════════════════════════
+          REVIEW PLACEHOLDERS
+          When you get real reviews from Gumroad buyers, replace:
+          - The "review-text" paragraph with their actual quote
+          - The "review-author" span with their name/username and any detail they shared
+          You can add or remove cards as needed — just copy/paste a .review-card block.
+          ════════════════════════════════════════════
+        -->
+        <div class="review-card">
+          <div class="review-stars">★★★★★</div>
+          <p class="review-text">"I've bought a bunch of Notion templates before but they were always overcomplicated. This one is actually the first one I've stuck with past the first week."</p>
+          <span class="review-author">— Jamie T., 19, University Student</span>
+        </div>
+        <div class="review-card">
+          <div class="review-stars">★★★★★</div>
+          <p class="review-text">"The money tracker alone was worth £17. I didn't realise how much I was haemorrhaging on food and random subscriptions until I started logging it here."</p>
+          <span class="review-author">— Marcus O., 22, working full-time</span>
+        </div>
+        <div class="review-card">
+          <div class="review-stars">★★★★★</div>
+          <p class="review-text">"Clean, simple, no fluff. I open it every morning and it genuinely helps me feel like I have my life together — even when I don't."</p>
+          <span class="review-author">— Ryan K., 17, Sixth Form</span>
+        </div>
+      </div>
+      <p class="review-note">* Placeholder reviews — replace with real ones from your Gumroad customers.</p>
+    </div>
+  </section>
+
+  <div class="divider"></div>
+
+  <!-- ── FINAL CTA ── -->
+  <section class="section">
+    <div class="container">
+      <div class="cta-block">
+        <h2>Stop drifting.<br /><em>Start building.</em></h2>
+        <p>One template. One payment. A system you'll actually use every single day.</p>
+
+        <div>
+          <div class="cta-price-badge">
+            <span class="price">£17</span>
+            <span class="label">One-time<br />No subscription</span>
+          </div>
+        </div>
+
+        <!--
+          ════════════════════════════════════════════
+          GUMROAD LINK — BOTTOM CTA BUTTON
+          Replace YOUR_GUMROAD_LINK_HERE with your Gumroad product URL.
+          Same link as above — just paste it in the same place.
+          ════════════════════════════════════════════
+        -->
+        <a href="YOUR_GUMROAD_LINK_HERE" class="btn-primary" target="_blank" rel="noopener">
+          Get the Daily Discipline Planner
+        </a>
+        <p class="cta-sub">Instant access via Notion. Works on iPhone, Android, Mac &amp; PC.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── FOOTER ── -->
+  <footer>
+    <div class="container">
+      <p>Daily Discipline Planner &nbsp;·&nbsp; Delivered via Notion &nbsp;·&nbsp; £17 one-time</p>
+    </div>
+  </footer>
+
+</body>
+</html>
